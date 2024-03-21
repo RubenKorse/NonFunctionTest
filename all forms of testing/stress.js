@@ -10,8 +10,9 @@ export let options = {
 };
 
 export function setup() {
+  let useramount = '100';
   const maxId = 8; // Hier kun je het maximale ID opgeven
-  let randomNumbers = generateRandomNumbers(options.vus, maxId); // Hier roep je de functie aan die een lijst met nummers maakt voor elke VU 1 (je geeft het aantal VU's mee en de maxId mee als parameter)
+  let randomNumbers = generateRandomNumbers(useramount, maxId); // Hier roep je de functie aan die een lijst met nummers maakt voor elke VU 1 (je geeft het aantal VU's mee en de maxId mee als parameter)
   return randomNumbers;
 }
 
