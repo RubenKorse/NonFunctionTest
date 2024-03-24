@@ -4,7 +4,7 @@ import { check, sleep } from 'k6';
 export default function (randomNumbers) {
   let myRandomNumber = randomNumbers[__VU - 1]; // Pakt het getal op de positie van de ID van de gebruiker (-1 omdat arrays bij 0 beginnen en de ID met 1 begint)
 
-  let response = http.get(`http://test-api.k6.io/public/crocodiles/${myRandomNumber}/`);
+  let response = http.get(`http://localhost:8000/public/crocodiles/${myRandomNumber}/`);
 
   if (response.status === 200) {
     let responseBody;
