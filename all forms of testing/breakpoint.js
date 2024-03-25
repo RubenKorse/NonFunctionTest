@@ -9,6 +9,13 @@ export let options = {
     { duration: '5m', target: 400 }, 
     { duration: '5m', target: 500 },  
   ],
+  ext: {
+    loadimpact: {
+      projectID: 3688133,
+      // Test runs with the same name groups test runs together
+      name: 'breakpoint test'
+    }
+  }
 };
 
 export function setup() {

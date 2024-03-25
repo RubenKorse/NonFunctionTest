@@ -4,6 +4,13 @@ import defaultFunction from './utils/defaultFunction.js';
 export let options = {
   vus: 10,
   duration: '10m',
+  ext: {
+    loadimpact: {
+      projectID: 3688133,
+      // Test runs with the same name groups test runs together
+      name: 'average test'
+    }
+  }
 };
 
 export function setup() {
