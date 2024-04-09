@@ -1,11 +1,18 @@
-import { setup, test } from './utils/testUtils.js';
+import { createUsers, test } from './utils/testUtils.js';
 
 export const options = {
     vus: 10,
     iterations: 100,
 };
 
-export default function () {
-    const authToken = setup(); // Perform setup operations
-    test(authToken); // Run the test with the obtained authentication token
+export const setup = () => {
+    const numUsers = 10;
+    const authTokens = createUsers(numUsers);
+    return authTokens;
+}
+
+export default function (authTokens) {
+    authTokens.forEach((authToken) => {
+        test(authToken); // Run the test with each obtained authentication token
+    });
 }

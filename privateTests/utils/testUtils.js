@@ -10,32 +10,37 @@ export function randomString(length, charset = '') {
 }
 
 // Register a new user and retrieve authentication token for subsequent API requests
-export function setup() {
-    const USERNAME = `${randomString(10)}@example.com`;
-    const PASSWORD = 'superCroc2019';
+export function createUsers(numUsers) {
 
-    const registerRes = http.post('http://localhost:8000/user/register/', {
-        first_name: 'Crocodile',
-        last_name: 'Owner',
-        username: USERNAME,
-        password: PASSWORD,
-    });
+    const authTokens = [];
+    for (let i = 1; i <= numUsers; i++) {
+        const USERNAME = `${randomString(10)}@example.com`;
+        const PASSWORD = 'superCroc2019';
 
-    check(registerRes, { 'created user': (r) => r.status === 201 });
+        const registerRes = http.post('http://localhost:8000/user/register/', {
+            first_name: 'Crocodile',
+            last_name: 'Owner',
+            username: USERNAME,
+            password: PASSWORD,
+        });
 
-    const loginRes = http.post('http://localhost:8000/auth/token/login/', {
-        username: USERNAME,
-        password: PASSWORD,
-    });
+        check(registerRes, { 'created user': (r) => r.status === 201 });
 
-    console.log(`register status:${registerRes.status}`)
+        const loginRes = http.post('http://localhost:8000/auth/token/login/', {
+            username: USERNAME,
+            password: PASSWORD,
+        });
 
-    console.log(`login status:${loginRes.status}`)
+        const authToken = loginRes.json('access');
+        check(authToken, { 'logged in successfully': () => authToken !== '' });
 
-    const authToken = loginRes.json('access');
-    check(authToken, { 'logged in successfully': () => authToken !== '' });
+        authTokens.push(authToken);
 
-    return authToken;
+        console.log(`register status:${registerRes.status}`);
+        console.log(`login status:${loginRes.status}`);
+    }
+
+    return authTokens;
 }
 
 export function test(authToken) {
@@ -62,6 +67,7 @@ export function test(authToken) {
             date_of_birth: '2023-05-11',
         };
 
+        // Create a new crocodile
         const res = http.post(URL, payload, requestConfigWithTag({ name: 'Create' }));
 
         if (check(res, { 'Croc created correctly': (r) => r.status === 201 })) {
@@ -71,8 +77,16 @@ export function test(authToken) {
             return;
         }
 
-        console.log(`Croc id:${res.id} and name:${res.name}`)
-    });
+        // Fetch crocodiles
+        const crocs = http.get(URL, requestConfigWithTag({ name: 'get' }));
 
-    // Add more test groups/functions as needed
+        if (check(crocs, { 'Crocodiles retrieved correctly': (r) => r.status === 200 })) {
+            // Output crocodile ID and name
+            console.log(`Croc id: ${crocs.json('id')} and name: ${crocs.json('name')}`);
+        } else {
+            console.log(`Unable to retrieve crocodiles: ${crocs.status} ${crocs.body}`);
+            return;
+        }
+    });
 }
+
