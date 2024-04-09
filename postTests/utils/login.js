@@ -6,7 +6,7 @@ export function loginUser(userData) {
     username: `Tester${userData.userId}`,
     password: 'pass',
   };
-  const loginUrl = 'http://localhost:8000/auth/basic/login/';
+  const loginUrl = 'http://localhost:8000/auth/token/login/';
   const loginResponse = http.post(loginUrl, loginData);
   check(loginResponse, {
     'User logged in successfully': (res) => res.status === 200,

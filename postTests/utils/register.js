@@ -25,7 +25,7 @@ export function registerUser(uniqueId) {
   console.log(`Registration response body for user ${uniqueId}: ${res.body}`);
 
   check(res, {
-    [`is status 201 for user ${uniqueId}`]: (r) => r.status === 201,
+    'User account created': (res) => res.status === 201,
   });
 
   return {
