@@ -8,6 +8,7 @@ export function randomString(length, charset = '') {
     while (length--) res += charset[(Math.random() * charset.length) | 0];
     return res;
 }
+let baseURL = 'http://localhost:8000'
 
 // Register a new user and retrieve authentication token for subsequent API requests
 export function createUsers(numUsers) {
@@ -17,7 +18,7 @@ export function createUsers(numUsers) {
         const USERNAME = `${randomString(10)}@example.com`;
         const PASSWORD = 'superCroc2019';
 
-        const registerRes = http.post('http://localhost:8000/user/register/', {
+        const registerRes = http.post(`${baseURL}/user/register/`, {
             first_name: 'Crocodile',
             last_name: 'Owner',
             username: USERNAME,
@@ -26,7 +27,7 @@ export function createUsers(numUsers) {
 
         check(registerRes, { 'created user': (r) => r.status === 201 });
 
-        const loginRes = http.post('http://localhost:8000/auth/token/login/', {
+        const loginRes = http.post(`${baseURL}/auth/token/login/`, {
             username: USERNAME,
             password: PASSWORD,
         });
@@ -58,7 +59,7 @@ export function test(authToken) {
         ),
     });
 
-    let URL = 'http://localhost:8000/my/crocodiles/';
+    let URL = `${baseURL}/my/crocodiles/`;
 
     group('01. Create a new crocodile', () => {
         const payload = {
