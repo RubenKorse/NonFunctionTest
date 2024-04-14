@@ -90,4 +90,3 @@ export function test(authToken) {
         }
     });
 }
-
