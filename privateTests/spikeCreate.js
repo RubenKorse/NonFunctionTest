@@ -1,4 +1,4 @@
-import { test } from './utils/newTest.js';
+import { test } from './utils/createTest.js';
 import { createUsers } from './utils/createUsers.js';
 
 export const options = {
