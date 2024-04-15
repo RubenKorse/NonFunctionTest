@@ -1,12 +1,12 @@
 import { createUsers, test } from './utils/getTest.js';
 
 export const options = {
-    vus: 10,
-    iterations: 100,
+    vus: 5,
+    duration: '30s',
 };
 
 export const setup = () => {
-    const numUsers = 10;
+    const numUsers = 5;
     const authTokens = createUsers(numUsers);
     return authTokens;
 }

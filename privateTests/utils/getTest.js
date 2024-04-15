@@ -61,7 +61,7 @@ export function test(authToken) {
 
     let URL = `${baseURL}/my/crocodiles/`;
 
-    group('01. Create a new crocodile', () => {
+    group('fetching crocs', () => {
         const payload = {
             name: `Name ${randomString(10)}`,
             sex: 'F',
@@ -80,6 +80,10 @@ export function test(authToken) {
 
         // Fetch crocodiles
         const crocs = http.get(URL, requestConfigWithTag({ name: 'get' }));
+
+        check(crocs, {
+            'reactietijd is minder dan 200 ms': (r) => r.timings.duration < 200,
+        })
 
         if (check(crocs, { 'Crocodiles retrieved correctly': (r) => r.status === 200 })) {
             // Output crocodile ID and name

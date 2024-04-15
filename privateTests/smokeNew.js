@@ -2,11 +2,11 @@ import { createUsers, test } from './utils/newTest.js';
 
 export const options = {
     vus: 5,
-    duration: '10s',
+    duration: '30s',
 };
 
 export const setup = () => {
-    const numUsers = 10;
+    const numUsers = 5;
     const authTokens = createUsers(numUsers);
     return { authTokens };
 }
