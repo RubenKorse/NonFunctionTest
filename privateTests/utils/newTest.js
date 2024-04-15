@@ -1,5 +1,5 @@
 import http from 'k6/http';
-import { check, group } from 'k6';
+import { check, group, sleep } from 'k6';
 
 // Create a random string of given length
 export function randomString(length, charset = '') {
@@ -82,4 +82,6 @@ export function test(authToken) {
             return;
         }
     });
+
+    sleep(1);
 }

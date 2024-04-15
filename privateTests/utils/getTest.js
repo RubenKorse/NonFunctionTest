@@ -93,4 +93,5 @@ export function test(authToken) {
             return;
         }
     });
+    sleep(1);
 }
