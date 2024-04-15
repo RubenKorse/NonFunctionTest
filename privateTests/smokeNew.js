@@ -1,8 +1,8 @@
 import { createUsers, test } from './utils/newTest.js';
 
 export const options = {
-    vus: 10,
-    iterations: 100,
+    vus: 5,
+    duration: '10s',
 };
 
 export const setup = () => {
