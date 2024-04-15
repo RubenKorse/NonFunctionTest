@@ -10,6 +10,7 @@ export function loginUser(userData) {
   const loginResponse = http.post(loginUrl, loginData);
   check(loginResponse, {
     'User logged in successfully': (res) => res.status === 200,
+    'response time 200ms': (res) => res.timings.duration < 200,
   });
 
   console.log(`Login status for user ${userData.userId}: ${loginResponse.status}`);

@@ -26,6 +26,7 @@ export function registerUser(uniqueId) {
 
   check(res, {
     'User account created': (res) => res.status === 201,
+    'response time 200ms': (res) => res.timings.duration > 200,
   });
 
   return {

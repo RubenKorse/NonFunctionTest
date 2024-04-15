@@ -1,4 +1,5 @@
-import { createUsers, test } from './utils/getTest.js';
+import { test } from './utils/getTest.js';
+import { createUsers } from './utils/createUsers.js';
 
 export const options = {
     vus: 5,

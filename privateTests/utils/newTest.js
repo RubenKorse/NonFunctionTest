@@ -11,39 +11,6 @@ export function randomString(length, charset = '') {
 
 const baseURL = 'http://localhost:8000';
 
-export function createUsers(numUsers) {
-    const authTokens = [];
-
-    for (let i = 1; i <= numUsers; i++) {
-        const USERNAME = `${randomString(10)}@example.com`;
-        const PASSWORD = 'superCroc2019';
-
-        const registerRes = http.post(`${baseURL}/user/register/`, {
-            first_name: 'Crocodile',
-            last_name: 'Owner',
-            username: USERNAME,
-            password: PASSWORD,
-        });
-
-        check(registerRes, { 'created user': (r) => r.status === 201 });
-
-        const loginRes = http.post(`${baseURL}/auth/token/login/`, {
-            username: USERNAME,
-            password: PASSWORD,
-        });
-
-        const authToken = loginRes.json('access');
-        check(authToken, { 'logged in successfully': () => authToken !== '' });
-
-        authTokens.push(authToken);
-
-        console.log(`register status:${registerRes.status}`);
-        console.log(`login status:${loginRes.status}`);
-    }
-
-    return authTokens;
-}
-
 export function test(authToken) {
     // Set the authorization header on the session for the subsequent requests
     const requestConfigWithTag = (tag) => ({
