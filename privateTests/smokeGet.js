@@ -9,10 +9,10 @@ export const options = {
 export const setup = () => {
     const numUsers = 5;
     const authTokens = createUsers(numUsers);
-    return authTokens;
+    return { authTokens };
 }
 
-export default function (authTokens) {
+export default function ({ authTokens }) {
     authTokens.forEach((authToken) => {
         test(authToken); // Run the test with each obtained authentication token
     });

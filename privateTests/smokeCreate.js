@@ -1,4 +1,4 @@
-import { test } from './utils/createTest.js.';
+import { createCrocs } from './utils/createTest.js.';
 import { createUsers } from './utils/createUsers.js';
 
 export const options = {
@@ -14,6 +14,6 @@ export const setup = () => {
 
 export default function ({ authTokens }) {
     authTokens.forEach((authToken) => {
-        test(authToken); // Run the test with each obtained authentication token
+        createCrocs(authToken); // Run the test with each obtained authentication token
     });
 }

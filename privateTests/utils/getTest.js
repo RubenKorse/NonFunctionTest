@@ -35,7 +35,7 @@ export function test(authToken) {
         };
 
         // Create a new crocodile
-        const res = http.post(URL, payload, requestConfigWithTag({ name: 'Create' }));
+        const res = http.post(URL, payload, requestConfigWithTag({ name: 'create' }));
 
         if (check(res, { 'Croc created correctly': (r) => r.status === 201 })) {
             URL = `${URL}${res.json('id')}/`;

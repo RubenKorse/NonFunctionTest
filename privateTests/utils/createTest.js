@@ -11,7 +11,7 @@ export function randomString(length, charset = '') {
 
 const baseURL = 'http://localhost:8000';
 
-export function test(authToken) {
+export function createCrocs(authToken) {
     // Set the authorization header on the session for the subsequent requests
     const requestConfigWithTag = (tag) => ({
         headers: {
@@ -36,6 +36,8 @@ export function test(authToken) {
         };
         // Fetch crocodiles
         const res = http.post(URL, payload, requestConfigWithTag({ name: 'Create' }));
+
+        // console.log(URL, payload, requestConfigWithTag({ name: 'create'}))
         
         check(res, {
             'reactietijd is minder dan 200 ms': (r) => r.timings.duration < 200,
