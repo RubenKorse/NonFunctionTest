@@ -37,6 +37,7 @@ export function createUsers(numUsers) {
 
         authTokens.push(authToken);
 
+        //console.log(authToken)
         console.log(`register status:${registerRes.status}`);
         console.log(`login status:${loginRes.status}`);
     }
